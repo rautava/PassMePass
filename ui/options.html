@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Password Generator Options</title>
+    <link rel="stylesheet" href="options.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Password Generator Settings</h1>
+        <p>Configure the length used when generating passwords from the context menu.</p>
+        <label for="length">Password Length (8 - 80)</label>
+        <div class="range-wrapper">
+            <input type="number" id="lengthNumber" min="8" max="80" step="1" />
+            <span id="lengthIndicator" style="margin-left:8px;color:#d33;font-size:1.1em;display:none;">&#9888;</span>
+        </div>
+        <button id="saveBtn">Save</button>
+        <div class="status" id="status" aria-live="polite"></div>
+    </div>
+    <script src="../src/config.js"></script>
+    <script src="options.js"></script>
+</body>
+
+</html>

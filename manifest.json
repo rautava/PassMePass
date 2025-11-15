@@ -1,0 +1,20 @@
+{
+  "name": "Pass-Me-Pass",
+  "description": "Generate secure random passwords (8-80 chars) with right-click on password/text fields. Includes lowercase, uppercase, numbers, and special characters.",
+  "version": "1.0.0",
+  "manifest_version": 3,
+  "author": "Your Name",
+  "permissions": ["storage", "contextMenus", "tabs", "scripting", "activeTab"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/contentScript.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "options_page": "ui/options.html"
+}

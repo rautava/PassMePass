@@ -1,40 +1,60 @@
 {
-  "folders": [
-    {
-      "path": "."
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        "cSpell.ignorePaths": [
+            "*.code-workspace",
+            "*.yml"
+        ],
+        "cSpell.words": [
+            "Canva",
+            "keyup",
+            "useb"
+        ],
+        "editor.formatOnSave": true,
+        "files.exclude": {
+            "**/.git": true,
+        }
+    },
+    "extensions": {
+        "recommendations": [
+            "dbaeumer.vscode-eslint",
+            "esbenp.prettier-vscode",
+            "ms-vscode.powershell",
+            "streetsidesoftware.code-spell-checker",
+            "davidanson.vscode-markdownlint"
+        ]
+    },
+    "tasks": {
+        "version": "2.0.0",
+        "tasks": [
+            {
+                "label": "Package Extension",
+                "type": "shell",
+                "command": "powershell.exe",
+                "args": [
+                    "-ExecutionPolicy",
+                    "Bypass",
+                    "-File",
+                    "scripts/package.ps1"
+                ],
+                "group": "build"
+            },
+            {
+                "label": "Dev Extension",
+                "type": "shell",
+                "command": "powershell.exe",
+                "args": [
+                    "-ExecutionPolicy",
+                    "Bypass",
+                    "-File",
+                    "scripts/dev.ps1"
+                ],
+                "group": "build"
+            }
+        ]
     }
-  ],
-  "settings": {
-    "editor.formatOnSave": true,
-    "files.exclude": {
-      "**/.git": true,
-    }
-  },
-  "extensions": {
-    "recommendations": [
-      "dbaeumer.vscode-eslint",
-      "esbenp.prettier-vscode",
-      "ms-vscode.powershell",
-      "streetsidesoftware.code-spell-checker"
-    ]
-  },
-  "tasks": {
-    "version": "2.0.0",
-    "tasks": [
-      {
-        "label": "Package Extension",
-        "type": "shell",
-        "command": "powershell.exe",
-        "args": ["-ExecutionPolicy", "Bypass", "-File", "scripts/package.ps1"],
-        "group": "build"
-      },
-      {
-        "label": "Dev Extension",
-        "type": "shell",
-        "command": "powershell.exe",
-        "args": ["-ExecutionPolicy", "Bypass", "-File", "scripts/dev.ps1"],
-        "group": "build"
-      }
-    ]
-  }
 }

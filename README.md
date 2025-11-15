@@ -4,7 +4,7 @@ Generate secure random passwords (lowercase, uppercase, digits, and special char
 
 ## Features
 
-- Right-click on password/text inputs or textareas to generate passwords
+- Right-click on password/text inputs or text areas to generate passwords
 - Configurable length (8-80 characters, default: 21)
 - Ensures at least one character from each character class
 - Smart event detection for compatibility with modern web frameworks (React, Vue, Angular)
@@ -15,7 +15,7 @@ Generate secure random passwords (lowercase, uppercase, digits, and special char
 1. Open `edge://extensions` in Microsoft Edge
 2. Enable **Developer mode** (toggle at bottom-left)
 3. Click **Load unpacked**
-4. Select the root folder `d:\passgen`
+4. Select the root folder `C:\workspace\PassMePass`
 
 ## Installation (Production)
 
@@ -44,7 +44,7 @@ For quick development tasks, use:
 ## Project Structure
 ```
 
-passgen/
+PassMePass/
 ├── manifest.json # Extension manifest (MV3)
 ├── README.md # This file
 ├── src/ # Source code
@@ -59,7 +59,7 @@ passgen/
 └── assets/ # Static assets
 └── icons/ # Extension icons (16x16, 48x48, 128x128)
 
-````
+````text
 
 ## Development
 ### Prerequisites
@@ -118,19 +118,16 @@ passgen/
 - [ ] Multiple password strength presets
 
 ## License
-[Specify your license here - MIT, Apache 2.0, proprietary, etc.]
 
-## Contributing
-[Add contribution guidelines if open source]
+This project is licensed under the Unlicense. See the LICENSE file for details.
 
-## Author
-Your Name - [your email or website]
+
 
 ## Packaging for Distribution
 
 To create a ZIP file for Edge Add-ons store submission:
 
-1. Open PowerShell in the extension root directory (`passgen`)
+1. Open PowerShell in the extension root directory (`PassMePass`)
 2. Run the packaging script:
    ```powershell
    .\package.ps1
@@ -138,8 +135,8 @@ To create a ZIP file for Edge Add-ons store submission:
    .\package.ps1 -Version "1.0.1"
 ````
 
-3. The packaged ZIP will be created in the `dist` folder (e.g., `dist\password-generator-v1.0.1.zip`)
-4. Upload this ZIP to the Microsoft Edge Add-ons Partner Center
+1. The packaged ZIP will be created in the `dist` folder (e.g., `dist\password-generator-v1.0.1.zip`)
+2. Upload this ZIP to the Microsoft Edge Add-ons Partner Center
 
 ### Development Helper
 
@@ -150,3 +147,29 @@ For quick development tasks, use:
 ```
 
 This menu-driven script lets you package, validate, and inspect the extension easily.
+
+## Testing
+
+This repository uses Deno for running the password generator tests.
+
+Run tests (PowerShell):
+
+```powershell
+# Install Deno if needed
+irm https://deno.land/install.ps1 -useb | iex
+
+# From repo root
+cd C:\workspace\PassMePass
+deno test --allow-read
+```
+
+Or use the Deno task (if your editor supports it):
+
+```powershell
+deno task test:password
+```
+
+Notes:
+
+- The Deno test harness evaluates `src/config.js` and `src/passwordGenerator.js` in a sandbox and checks that generated passwords include lowercase, uppercase, digits, and special characters.
+- Adjust `TEST_RUNS` environment variable or the `RUNS` value in `test/deno_test_passwordGenerator_test.js` to change the number of iterations.

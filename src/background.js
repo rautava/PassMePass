@@ -26,13 +26,13 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
       chrome.tabs.sendMessage(
         tab.id,
         { action: "fillPassword", password: pwd },
-        (response) => {
+        (_response) => {
           if (chrome.runtime.lastError) {
             // Attempt to inject content script dynamically, then resend
             chrome.scripting.executeScript(
               {
                 target: { tabId: tab.id },
-                files: ["contentScript.js"],
+                files: ["src/contentScript.js"],
               },
               () => {
                 if (!chrome.runtime.lastError) {

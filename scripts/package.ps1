@@ -67,7 +67,7 @@ if ($manifest.version -ne $Version) {
 }
 
 # Create temporary staging directory
-$TempDir = Join-Path $env:TEMP "passgen_package_$(Get-Random)"
+$TempDir = Join-Path $env:TEMP "PassMePass_package_$(Get-Random)"
 New-Item -ItemType Directory -Path $TempDir -Force | Out-Null
 
 Write-Host "[*] Copying files to staging area..." -ForegroundColor Yellow
@@ -107,10 +107,10 @@ try {
 
     # Create zip file
     Compress-Archive -Path "$TempDir\*" -DestinationPath $OutputPath -CompressionLevel Optimal
-    
+
     $fileSize = (Get-Item $OutputPath).Length
     $fileSizeKB = [math]::Round($fileSize / 1KB, 2)
-    
+
     Write-Host ""
     Write-Host "=====================================" -ForegroundColor Green
     Write-Host "  Package Created Successfully!" -ForegroundColor Green

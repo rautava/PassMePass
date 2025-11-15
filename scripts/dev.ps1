@@ -23,12 +23,12 @@ function Open-ExtensionsPage {
     Write-Host "[+] Opened Edge extensions page" -ForegroundColor Green
 }
 
-function Validate-Manifest {
+function Test-Manifest {
     if (!(Test-Path "manifest.json")) {
         Write-Host "[!] Error: manifest.json not found!" -ForegroundColor Red
         return
     }
-    
+
     try {
         $manifest = Get-Content "manifest.json" -Raw | ConvertFrom-Json
         Write-Host "[+] Manifest is valid JSON" -ForegroundColor Green
@@ -51,8 +51,8 @@ function Validate-Manifest {
 
 function Show-Structure {
     Write-Host "File structure:" -ForegroundColor Yellow
-    Get-ChildItem -Recurse -File | Where-Object { 
-        $_.FullName -notmatch "\\dist\\" -and 
+    Get-ChildItem -Recurse -File | Where-Object {
+        $_.FullName -notmatch "\\dist\\" -and
         $_.FullName -notmatch "\\.git\\" -and
         $_.Extension -ne ".ps1"
     } | ForEach-Object {
@@ -62,7 +62,7 @@ function Show-Structure {
     }
 }
 
-function Package-Extension {
+function Export-Extension {
     $packageScript = Join-Path $PSScriptRoot "package.ps1"
     if (Test-Path $packageScript) {
         & $packageScript
@@ -77,17 +77,17 @@ do {
     Show-Menu
     $choice = Read-Host "Enter your choice"
     Write-Host ""
-    
+
     switch ($choice) {
-        "1" { Package-Extension }
-        "2" { Open-ExtensionsPage }
-        "3" { Validate-Manifest }
-        "4" { Show-Structure }
-        "5" { Write-Host "[!] Tests not yet implemented" -ForegroundColor Yellow }
-        "0" { Write-Host "Goodbye!" -ForegroundColor Green; break }
-        default { Write-Host "[!] Invalid choice" -ForegroundColor Red }
-    }
-    
+            "1" { Export-Extension }
+            "2" { Open-ExtensionsPage }
+            "3" { Test-Manifest }
+            "4" { Show-Structure }
+            "5" { Write-Host "[!] Tests not yet implemented" -ForegroundColor Yellow }
+            "0" { Write-Host "Goodbye!" -ForegroundColor Green; break }
+            default { Write-Host "[!] Invalid choice" -ForegroundColor Red }
+        }
+
     if ($choice -ne "0") {
         Write-Host ""
         Write-Host "Press any key to continue..." -ForegroundColor DarkGray

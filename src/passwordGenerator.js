@@ -21,15 +21,25 @@ function generatePassword(length) {
   );
   const allChars = pools.join("");
   const remainingLength = length - required.length;
-  let result = required;
+
+  // Start with an empty result, append remaining random chars
+  const result = [];
   for (let i = 0; i < remainingLength; i++) {
     result.push(allChars[Math.floor(Math.random() * allChars.length)]);
   }
-  // Shuffle (Fisher-Yates)
+
+  // Insert each required character into a random position in the result
+  required.forEach((ch) => {
+    const pos = Math.floor(Math.random() * (result.length + 1));
+    result.splice(pos, 0, ch);
+  });
+
+  // Shuffle (Fisher-Yates) to ensure final randomness
   for (let i = result.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [result[i], result[j]] = [result[j], result[i]];
   }
+
   return result.join("");
 }
 

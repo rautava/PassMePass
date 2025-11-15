@@ -9,6 +9,7 @@ This directory should contain the following icon files:
 ## Creating Icons
 
 You can create icons using:
+
 - Online tools: Canva, Figma, or icon generators
 - Image editors: GIMP, Photoshop, or Paint.NET
 - SVG to PNG converters for scalable designs
@@ -20,7 +21,7 @@ You can create icons using:
 - Follow Microsoft Edge add-ons design guidelines
 - Use transparent backgrounds (PNG format)
 
-## Once created, update manifest.json:
+## Once created, update manifest.json
 
 ```json
 "icons": {
